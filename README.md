@@ -1,19 +1,37 @@
-# ctf_writeups
-this is a repo full off CTF writeups i have done over many certified websites
------------------------------------------------------------------------------------------
-Purpose
-This repo contains CTFs i learned on my journey of learning AppSec
------------------------------------------------------------------------------------------
-Scope
-1)Web & Internet fundamentals from an application security perspective (HTTP/HTTPS behavior, sessions & cookies, browser security mechanisms like SOP and CORS, and basic authentication flows)
------------------------------------------------------------------------------------------
-platforms
-1-PicoCTF 
-2-portswigger
------------------------------------------------------------------------------------------
-Repo Structure
-Write ups are organized by the platform 
-inside the platform its organized by categories
-and each category contains the level solved and its in a standalone markdown file
------------------------------------------------------------------------------------------
+# CTF Writeups
 
+## 📖 Overview
+
+This repository contains my CTF writeups as I learn cybersecurity through hands-on challenges.
+
+---
+
+## 🧠 Platforms
+
+* OverTheWire
+* PicoCTF
+* PortSwigger Web Security Academy
+
+---
+
+## 📂 Structure
+
+Writeups are organized by platform and category:
+
+platform/
+├── category/
+│    ├── challenge-name.md
+
+---
+
+## 🔍 How to Navigate
+
+* Choose a platform (e.g., OverTheWire)
+* Select a category or level
+* Open the markdown file for the full writeup
+
+---
+
+## 📌 Notes
+
+This repository is continuously updated as I progress.
