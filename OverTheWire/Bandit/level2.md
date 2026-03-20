@@ -2,7 +2,7 @@
 
 ## 1. Objective
 
-Find the password present inside file “-”
+The password for the next level is stored in a file called - located in the home directory
 
 ---
 
