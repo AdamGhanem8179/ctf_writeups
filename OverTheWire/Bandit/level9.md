@@ -1,4 +1,4 @@
-# Bandit Level 8 → Level 9
+# Bandit Level 9 → Level 10
 
 ## 1. Objective
 The password for the next level is stored in the file data.txt in one of the few human-readable strings, preceded by several ‘=’ characters.
