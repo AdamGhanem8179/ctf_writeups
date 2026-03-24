@@ -31,7 +31,7 @@ Step-by-step approach:
 
 ### Explanation
 Explain:  
-• File is used to check what the file is made of so if itws  gzip for example I use gzip -d (d means decompress and -r revert)________________________________________
+• File is used to check what the file is made of so if itws  gzip for example I use gzip -d (d means decompress and -r revert)
 
 ---
 
@@ -41,7 +41,7 @@ Explain:
 ---
 
 ## 6. Key Concepts
-• Breaking complex problems into layers________________________________________
+• Breaking complex problems into layers
 
 ---
 
