@@ -59,4 +59,6 @@ I can use files that would execute commands that require higher levels
 ---
 
 ## 8. Credential (Password)
+```
 0qXahG8ZjOVMN9Ghs7iOWsCfZyXOUbYO
+```
