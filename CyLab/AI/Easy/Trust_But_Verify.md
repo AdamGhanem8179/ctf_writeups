@@ -20,7 +20,7 @@ writeup_content = """# Write-Up: Trust But Verify
 | **Difficulty** | Easy |
 | **Author** | LT 'syreal' Jones |
 | **Points** | Practice / Learning Library |
-| **Date** | 2026 |
+| **Date** | 9/8/2026 |
 
 ### Description
 
