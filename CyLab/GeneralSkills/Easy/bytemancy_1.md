@@ -8,7 +8,7 @@
 * **Category:** Reverse Engineering / Binary Exploitation
 * **Points:** 100
 * **Date:** 9/15/2026
-* **Flag:** picoCTF{h0w_m4ny_e's???_0c1ad83a}
+* **Flag:** picoCTF{h0w_m4ny_e's???_........}
 
 ---
 
@@ -39,7 +39,7 @@ The challenge hints at determining the exact number or sequence of the character
 ### 3. Triggering the Win Condition & Flag Capture
 Once the input matches the expected byte criteria, the application bypasses the failure routine and executes the win handler, printing the flag directly to stdout:
 
-picoCTF{h0w_m4ny_e's???_0c1ad83a}
+picoCTF{h0w_m4ny_e's???_........}
 
 ---
 
