@@ -1,0 +1,51 @@
+# picoCTF – Blame Game Write-up
+
+---
+
+## Step 0 - Challenge Info
+* **CTF Name:** picoCTF
+* **Challenge Name:** Blame Game
+* **Category:** General Skills
+* **Points:** 100
+* **Date:** 9/18/2026
+* **Flag:** picoCTF{@sk_th3_1nt3rn_........}
+
+---
+
+## TL;DR (Abstract)
+The challenge provides a Git repository where the flag is buried deep within historical commit messages or tracked file modifications across multiple commits or branches. By searching the entire repository history using `git log --all` piped into `grep`, the flag string was extracted directly from past commit data without manually inspecting each revision.
+
+---
+
+## Challenge Description
+> Someone dumped a file with the flag into the code repository, but it was committed somewhere in the history. Can you track down who added it and extract the flag?
+
+---
+
+## Thought Process & Walkthrough
+
+### 1. Initial Reconnaissance
+Download and extract the challenge archive containing the Git repository:
+
+unzip challenge.zip
+cd drop-in
+
+Checking the current working tree or file contents might not immediately reveal the flag, as it could have been modified, renamed, or placed in an earlier commit.
+
+### 2. Searching Git History Across All Branches and Commits
+Since standard `git log` only displays the history of the current branch, the `--all` flag ensures that all branches, tags, and reflog histories are searched. Piping the output into `grep` allows filtering specifically for the `picoCTF{` prefix:
+
+git log --all | grep "picoCTF{"
+
+### 3. Extracting the Flag
+The command scans every commit message in the repository history, instantly matching the entry containing the flag:
+
+    picoCTF{@sk_th3_1nt3rn_........}
+
+The flag is printed directly to the terminal output.
+
+---
+
+## Remediation & Key Takeaways
+* **Comprehensive History Searches:** When investigating Git repositories during forensic analysis or CTF challenges, using `git log --all`, `git grep`, or `git log -S` (search for specific string changes) provides powerful ways to unearth deleted secrets.
+* **Sensitive Data in Commit Messages:** Developers should avoid placing passwords, tokens, or flags into commit messages, as commit logs are preserved permanently in the `.git` metadata.
