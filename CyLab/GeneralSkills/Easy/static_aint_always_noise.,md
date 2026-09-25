@@ -1,0 +1,79 @@
+# picoCTF – Static ain't always noise Write-up
+
+## Step 0 - Challenge Info
+
+* **CTF Name:** picoCTF
+
+* **Challenge Name:** Static ain't always noise
+
+* **Category:** General Skills / Reverse Engineering
+
+* **Points:** 20
+
+* **Date:** 9/25/2026
+
+* **Flag:** academy{d15a5m_t34s3r_.....}
+
+## TL;DR (Abstract)
+
+The challenge provides a binary executable alongside a bash helper script. After granting execution permissions via `chmod +x` and executing the binary/script, inspecting the generated or runtime strings using `grep` quickly isolated the flag matching the `academy{` wrapper pattern.
+
+## Challenge Description
+
+> Can you look at the data in this binary file? It's not always just static noise.
+
+## Thought Process & Walkthrough
+
+### 1. Initial Reconnaissance
+
+The challenge distributes a compiled binary file (and an optional bash helper script):
+
+```
+ls -la
+```
+
+* File inspection shows the target binary lacks execute permissions by default.
+* Raw inspection (e.g., `cat`) outputs unstructured bytecode and noise.
+
+### 2. Granting Permissions & Execution
+
+To run the binary in an interactive Linux shell, execute permissions must be applied:
+
+```
+chmod +x static
+chmod +x ltdis.sh
+```
+
+Running the executable directly or feeding it to the provided disassembly helper script (`./ltdis.sh static`) produces output files containing disassembled text and embedded printable strings.
+
+### 3. Execution & Flag Capture
+
+Filtering the output directly for the flag prefix using `grep` extracts the plain-text flag without manual inspection of the full disassembly dump:
+
+```
+./static | grep -i "academy{"
+```
+
+Or targeting the generated strings file:
+
+```
+strings static | grep "academy{"
+```
+
+Terminal Output:
+
+```
+academy{d15a5m_t34s3r_.....}
+```
+
+The resulting string gives the final flag:
+
+```
+academy{d15a5m_t34s3r_.....}
+```
+
+## Remediation & Key Takeaways
+
+* **File Permissions:** Files downloaded in Linux often arrive with standard read/write permissions (`rw-r--r--`). The `chmod +x <file>` command applies execution rights (`-rwxr-xr-x`).
+* **Binary String Extraction:** The `strings` utility extracts ASCII and printable UTF sequences from compiled binaries, exposing hardcoded keys, URLs, and flag strings.
+* **Pipeline Filtering:** Combining file output or process streams with `grep` (`command | grep -i <pattern>`) eliminates manual scrolling through noisy command-line output.
