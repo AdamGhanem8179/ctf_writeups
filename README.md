@@ -9,7 +9,7 @@ This repository contains my CTF writeups as I learn cybersecurity through hands-
 ## 🧠 Platforms
 
 * OverTheWire
-* PicoCTF
+* PicoCTF/cylab
 * PortSwigger Web Security Academy
 
 ---
