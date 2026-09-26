@@ -1,0 +1,59 @@
+# CyLab – PW Crack 1 Write-up
+
+## Step 0 - Challenge Info
+
+* **CTF Name:** CyLab
+
+* **Challenge Name:** PW Crack 1
+
+* **Category:** General Skills / Reverse Engineering
+
+* **Points:** 50
+
+* **Date:** 9/26/2026
+
+* **Flag:** academy{545h_r1ng1ng_........}
+
+## TL;DR (Abstract)
+
+The challenge provides a password checker script that requires a valid password to decrypt and display the flag. By inspecting the source code using `cat`, the target password was found hardcoded in plain text. Executing the program and entering the password successfully output the flag.
+
+## Challenge Description
+
+> Can you crack the password to get the flag? Download the password checker script and encrypted flag file.
+
+## Thought Process & Walkthrough
+
+### 1. Initial Reconnaissance
+
+Inspect the source code of the provided challenge script:
+
+```bash
+cat level1.py
+```
+
+Reading the file reveals a straightforward conditional comparison where the user's input is checked directly against a hardcoded string literal.
+
+### 2. Execution & Flag Capture
+
+Execute the Python script:
+
+```bash
+python3 level1.py
+```
+
+When prompted for the password, enter the value recovered from the source code.
+
+Terminal Interaction:
+
+```text
+Please enter correct password for flag: <hardcoded_password>
+Welcome back... your flag, user:
+academy{545h_r1ng1ng_........}
+```
+
+Flag:
+
+```
+academy{545h_r1ng1ng_........}
+```
