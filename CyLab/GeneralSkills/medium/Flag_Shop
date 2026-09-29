@@ -1,0 +1,89 @@
+# CyLab – Flag Shop Write-up
+
+## Step 0 - Challenge Info
+
+* **CTF Name:** CyLab
+
+* **Challenge Name:** Flag Shop
+
+* **Category:** Binary Exploitation / General Skills
+
+* **Points:** 50
+
+* **Date:** 9/29/2026
+
+* **Flag:** academy{m0n3y_bag5_........}
+
+## TL;DR (Abstract)
+
+The challenge presents a storefront program where buying the authentic flag requires funds far exceeding the starting balance. By inspecting the source code, a signed 32-bit integer overflow vulnerability was found in the total cost calculation when ordering fake flags. Supplying a sufficiently large order quantity caused the multiplication arithmetic to wrap into negative numbers, resulting in a negative total cost that increased the balance instead of reducing it, allowing purchase of the real flag.
+
+## Challenge Description
+
+> There's a flag shop selling items, but the real flag is way out of your budget. Can you find a way to afford the real flag?
+
+## Thought Process & Walkthrough
+
+### 1. Initial Reconnaissance
+
+Inspecting the provided source code shows the initial balance and item costs:
+
+* Starting balance: `1100`
+* Real flag cost: `100000`
+* Fake flag cost: `900` each
+
+In the routine handling fake flag purchases, the cost calculation uses signed 32-bit integer variables:
+
+```c
+int number_flags = 0;
+fflush(stdin);
+scanf("%d", &number_flags);
+if (number_flags > 0) {
+    int total_cost = 0;
+    total_cost = 900 * number_flags;
+    if (total_cost <= account_balance) {
+        account_balance -= total_cost;
+        printf("\nYour new balance is %d\n\n", account_balance);
+    }
+}
+```
+
+### 2. Exploitation via Integer Overflow
+
+A signed 32-bit integer (`int`) has a maximum representation of:
+
+$$2^{31} - 1 = 2,147,483,647$$
+
+When `total_cost = 900 * number_flags` exceeds this maximum boundary, it wraps around to a negative value in two's complement arithmetic.
+
+Entering an order size such as `2386093`:
+
+$$900 \times 2,386,093 = 2,147,483,700$$
+
+Because $2,147,483,700 > 2,147,483,647$, the calculation overflows to $-2,147,483,596$.
+
+Subtracting this negative total cost (`account_balance -= total_cost`) produces an addition:
+
+$$\text{account\_balance} - (-\text{value}) = \text{account\_balance} + \text{value}$$
+
+This increases the account balance into the billions.
+
+### 3. Execution & Flag Capture
+
+1. Start the program or connect to the challenge port.
+2. Select **Buy Flags** $\rightarrow$ **Definitely not the flag Flag**.
+3. Enter a sufficiently large number (e.g., `2386093`).
+4. Observe the updated account balance.
+5. Select **Buy Flags** $\rightarrow$ **1337 Flag** (the real flag).
+
+Terminal Output:
+
+```
+YOUR FLAG IS: academy{m0n3y_bag5_........}
+```
+
+Flag:
+
+```
+academy{m0n3y_bag5_........}
+```
