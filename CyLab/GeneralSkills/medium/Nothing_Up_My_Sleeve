@@ -1,0 +1,74 @@
+# CyLab – Nothing Up my sleeve Write-up
+
+## Step 0 - Challenge Info
+
+* **CTF Name:** CyLab
+
+* **Challenge Name:** Nothing Up my sleeve
+
+* **Category:** General Skills / Linux
+
+* **Points:** 50
+
+* **Date:** 9/29/2026
+
+* **Flag:** academy{c0ngr4ts_0n_y0ur_......}
+
+## TL;DR (Abstract)
+
+The challenge provides access to an environment or file hierarchy where the objective is to locate and read a hidden flag file. By navigating the filesystem directories, discovering the target `flag.txt` file, and outputting its contents using standard Linux commands (`cat flag.txt`), the plaintext flag was retrieved.
+
+## Challenge Description
+
+> There's nothing up my sleeve! Navigate through the environment to find where the flag is stored and read its contents.
+
+## Thought Process & Walkthrough
+
+### 1. Initial Reconnaissance & Navigation
+
+Upon connecting to the host environment or exploring the provided filesystem:
+
+* **Current Directory Check:** Inspect existing files and subdirectories:
+
+  ```bash
+  ls -la
+  pwd
+  ```
+
+* **Locating the File:** If located within nested folders or obscure directory trees, locate `flag.txt`:
+
+  ```bash
+  find . -name "flag.txt" 2>/dev/null
+  # or
+  ls -R
+  ```
+
+* **Directory Traversal:** Navigate directly to the directory containing the target file:
+
+  ```bash
+  cd path/to/directory
+  ```
+
+### 2. Reading the File Contents
+
+Once located in the working directory containing `flag.txt`, standard Unix text-display utilities were used to view its contents directly:
+
+```bash
+cat flag.txt
+```
+
+*(Alternative tools if `cat` is restricted or filtered: `less flag.txt`, `head -n 10 flag.txt`, or `more flag.txt`)*
+
+### 3. Execution & Flag Capture
+
+Executing `cat flag.txt` prints the recovered flag string directly to standard output:
+
+```text
+academy{c0ngr4ts_0n_y0ur_......}
+```
+
+Flag:
+
+```text
+academy{c0ngr4ts_0n_y0ur_......}
+```
